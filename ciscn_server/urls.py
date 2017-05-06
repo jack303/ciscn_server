@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^dht/',include('dht_info.urls',namespace='dht')),
     url(r'^', include(router.urls)),
-    url(r'^snippet/',include('tutorial.urls',namespace='snippet')),
+    url(r'^snippet/',include('snippet.urls',namespace='snippet')),
 ]

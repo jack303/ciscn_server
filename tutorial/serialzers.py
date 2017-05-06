@@ -10,12 +10,15 @@ class SnippetSerializer(serializers.Serializer):
     language = serializers.ChoiceField(choices=models.LANGUAGE_CHOICES, default='python')
     style = serializers.ChoiceField(choices=models.STYLE_CHOICES, default='friendly')
 
+    # the method create and update is acquiescently not implemented
     def create(self, validated_data):
         """
             Create and return a new `Snippet` instance, 
             given the validated data.
         """
-        return models.Snippet.objects.create(validated_data)
+
+        #### add ** to invoke the create function
+        return models.Snippet.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         """

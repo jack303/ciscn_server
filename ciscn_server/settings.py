@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'dht_info',
-    'tutorial.apps.TutorialConfig',
+    # 'tutorial.apps.TutorialConfig',
+    'snippet.apps.SnippetConfig'
 ]
 
 #  global settings of rest-framework
