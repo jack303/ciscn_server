@@ -24,7 +24,7 @@ SECRET_KEY = '71xb7@*t*e=@)vs(xjx*#cq14-2i*(8uf4_1b5$kxo-l-m6a$&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['220.167.45.250']
 
 # Application definition
 
@@ -36,9 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'dht_info',
+    'dht.apps.DhtConfig',
+    #'dht_info',
     # 'tutorial.apps.TutorialConfig',
-    'snippet.apps.SnippetConfig'
+    # 'snippet.apps.SnippetConfig'
 ]
 
 #  global settings of rest-framework
