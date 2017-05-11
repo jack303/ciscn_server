@@ -15,29 +15,54 @@ from django.db import models
 TYPE_CHOICES = (('1','normal'),('2','porn'))
 LEVEL_CHOICES = (('1','serious'),('2','not bad'))
 
-class Resource(models.Model):
-    info_hash = models.CharField(max_length=40, null=False)
-    category = models.CharField(max_length=20, null=False)
-    data_hash = models.CharField(max_length=32, null=False)
-    name = models.CharField(max_length=255, null=False)
-    extension = models.CharField(max_length=20, null=False)
-    classified = models.CharField(max_length=255, null=False)
-    source_ip = models.CharField(max_length=20, null=True)
-    tagged = models.CharField(max_length=255, null=False)
-    length = models.CharField(max_length=255, null=False)
-    # change the type to date ???
-    create_time = models.CharField(max_length=255, null=False)
-    last_seen = models.CharField(max_length=255, null=False)
-    #
-    requests = models.IntegerField(null=False, default=0)
-    comment = models.CharField(max_length=255, null=True)
-    creator = models.CharField(max_length=20, null=True)
-    pass
+# class Resource(models.Model):
+#     info_hash = models.CharField(max_length=40, null=False)
+#     category = models.CharField(max_length=20, null=False)
+#     data_hash = models.CharField(max_length=32, null=False)
+#     name = models.CharField(max_length=255, null=False)
+#     extension = models.CharField(max_length=20, null=False)
+#     classified = models.CharField(max_length=255, null=False)
+#     source_ip = models.CharField(max_length=20, null=True)
+#     tagged = models.CharField(max_length=255, null=False)
+#     length = models.CharField(max_length=255, null=False)
+#     # change the type to date ???
+#     create_time = models.CharField(max_length=255, null=False)
+#     last_seen = models.CharField(max_length=255, null=False)
+#     #
+#     requests = models.IntegerField(null=False, default=0)
+#     comment = models.CharField(max_length=255, null=True)
+#     creator = models.CharField(max_length=20, null=True)
+#     pass
+class SearchHash(models.Model):
+    info_hash = models.CharField(unique=True, max_length=40)
+    category = models.CharField(max_length=20)
+    data_hash = models.CharField(max_length=32)
+    name = models.CharField(max_length=255)
+    extension = models.CharField(max_length=20)
+    classified = models.IntegerField()
+    source_ip = models.CharField(max_length=20, blank=True, null=True)
+    tagged = models.IntegerField()
+    length = models.BigIntegerField()
+    create_time = models.DateTimeField()
+    last_seen = models.DateTimeField()
+    requests = models.IntegerField()
+    comment = models.CharField(max_length=255, blank=True, null=True)
+    creator = models.CharField(max_length=20, blank=True, null=True)
 
+    class Meta:
+        managed = False
+        db_table = 'search_hash'
 
-class File_list(models.Model):
-    info_hash = models.CharField(max_length=40, primary_key=True)
-    file_list = models.CharField(max_length=255)
+# class File_list(models.Model):
+#     info_hash = models.CharField(max_length=40, primary_key=True)
+#     file_list = models.CharField(max_length=255)
+class SearchFilelist(models.Model):
+    info_hash = models.CharField(primary_key=True, max_length=40)
+    file_list = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'search_filelist'
 
 class Request(models.Model):
     #maybe we need to record the request time to make DHT visible

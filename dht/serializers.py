@@ -1,19 +1,13 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from dht.models import Resource, File_list, Request, Type, Resource_shield, Node_shield, Resource_text
+from dht.models import  Request, Type, Resource_shield, Node_shield, Resource_text
 
+class UserLoginSerializer(serializers.ModelSerializer):
 
-class ResourceSerializer(serializers.ModelSerializer):
-    #
     class Meta:
-        model = Resource
-        fields = ('__all__')
+        model = User
+        fields = ('username','password')
 
-
-class FileListSerializer(serializers.ModelSerializer):
-    #
-    class Meta:
-        model = File_list
-        fields = ('__all__')
 
 class RequestSerializer(serializers.ModelSerializer):
     #
