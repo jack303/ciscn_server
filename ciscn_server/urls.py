@@ -20,6 +20,7 @@ from rest_framework import routers
 
 # router = routers.DefaultRouter()
 # router.register(r'users',views.UserViewSet)
+from ciscn_server import settings
 
 urlpatterns = [
     # browsable API
@@ -29,5 +30,6 @@ urlpatterns = [
     # url(r'^dht/',include('dht.urls',namespace='dht')),
     # url(r'^', include(router.urls)),
     # url(r'^snippet/',include('snippet.urls',namespace='snippet')),
-    url(r'^dht/',include('dht.urls'))
+    url(r'^dht/',include('dht.urls')),
+
 ]

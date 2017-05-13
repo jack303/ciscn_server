@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'', include(router.urls)),
     url(r'^user_login/$',views.UserLogin),
     url(r'^resourceRecord/$',views.ResourceRecord),
-    # url(r'^')
+    url(r'^nodeRecord/$',views.NodeRecord),
+    # url(r'^r')
 
 ]

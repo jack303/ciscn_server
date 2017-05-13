@@ -48,9 +48,10 @@ class SearchHash(models.Model):
     requests = models.IntegerField()
     comment = models.CharField(max_length=255, blank=True, null=True)
     creator = models.CharField(max_length=20, blank=True, null=True)
+    type = models.OneToOneField("Type")
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'search_hash'
 
 # class File_list(models.Model):
@@ -64,24 +65,36 @@ class SearchFilelist(models.Model):
         managed = False
         db_table = 'search_filelist'
 
+class Node(models.Model):
+    ip = models.CharField(max_length=20,primary_key=True)#节点唯一标识
+    heading = models.CharField(max_length=20)#节点在页面上的显示
+    img_src = models.CharField(max_length=255)
+    resource_num = models.IntegerField(auto_created=0)
+    anti_num = models.IntegerField(auto_created=0)
+    porn_num = models.IntegerField(auto_created=0)
+    vio_num = models.IntegerField(auto_created=0)
+    capture_time = models.DateTimeField(auto_now_add=True)
+    belonging = models.CharField(max_length=255)
+    feature = models.CharField(max_length=255)
+
+
 class Request(models.Model):
     #maybe we need to record the request time to make DHT visible
     info_hash = models.CharField(max_length=40)
     request_ip = models.CharField(max_length=20)
-    time = models.DateTimeField(auto_now=True)
+    time = models.DateTimeField(auto_now_add=True)
 
 class Type(models.Model):
-    info_hash = models.CharField(max_length=40, primary_key=True)
     type = models.CharField(choices=TYPE_CHOICES,default='1',max_length=20)
     level = models.CharField(choices=LEVEL_CHOICES,default='1',max_length=20)
 
 class Resource_shield(models.Model):
     info_hash = models.CharField(max_length=40, primary_key=True)
-    time = models.DateTimeField(auto_now=True)
+    time = models.DateTimeField(auto_now_add=True)
 
 class Node_shield(models.Model):
     node_ip = models.CharField(max_length=20, null=True)
-    time = models.DateTimeField(auto_now=True)
+    time = models.DateTimeField(auto_now_add=True)
 
 class Resource_text(models.Model):
     info_hash = models.CharField(max_length=40)
