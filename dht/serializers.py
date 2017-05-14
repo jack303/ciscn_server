@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from dht.models import  Request, Type, Resource_shield, Node_shield, Resource_text
+from dht.models import  Request, Resource_shield, Node_shield, Resource_text
 
 class UserLoginSerializer(serializers.ModelSerializer):
 
@@ -15,11 +15,11 @@ class RequestSerializer(serializers.ModelSerializer):
         model = Request
         fields = ('__all__')
 
-class TypeSerializer(serializers.ModelSerializer):
-    #
-    class Meta:
-        model = Type
-        fields = ('__all__')
+# class TypeSerializer(serializers.ModelSerializer):
+#     #
+#     class Meta:
+#         model = Type
+#         fields = ('__all__')
 
 class ResourceShieldSerializer(serializers.ModelSerializer):
     #

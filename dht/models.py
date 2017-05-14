@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Create your models here.
 # the models of dht include:
 # resource: the origin resource collected by web crawler
@@ -48,10 +47,10 @@ class SearchHash(models.Model):
     requests = models.IntegerField()
     comment = models.CharField(max_length=255, blank=True, null=True)
     creator = models.CharField(max_length=20, blank=True, null=True)
-    type = models.OneToOneField("Type")
-
+    type = models.CharField(max_length=20, blank=True, null=True)
+    level = models.CharField(max_length=20, blank=True, null=True)
     class Meta:
-        #managed = False
+        managed = False
         db_table = 'search_hash'
 
 # class File_list(models.Model):
@@ -84,9 +83,10 @@ class Request(models.Model):
     request_ip = models.CharField(max_length=20)
     time = models.DateTimeField(auto_now_add=True)
 
-class Type(models.Model):
-    type = models.CharField(choices=TYPE_CHOICES,default='1',max_length=20)
-    level = models.CharField(choices=LEVEL_CHOICES,default='1',max_length=20)
+# class Type(models.Model):
+#     info_hash = models.CharField(max_length=40, primary_key=True)
+#     type = models.CharField(choices=TYPE_CHOICES,default='1',max_length=20)
+#     level = models.CharField(choices=LEVEL_CHOICES,default='1',max_length=20)
 
 class Resource_shield(models.Model):
     info_hash = models.CharField(max_length=40, primary_key=True)
@@ -111,3 +111,4 @@ class Resource_media(models.Model):
     # api do not provide file upload
     frame_address = models.CharField(max_length=255)
     frame_type = models.CharField(choices=TYPE_CHOICES, max_length=20, default='1')
+
